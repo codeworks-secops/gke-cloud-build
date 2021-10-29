@@ -5,7 +5,7 @@ metadata:
     app: demo-spring-app
   name: demo-spring-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: demo-spring-app
