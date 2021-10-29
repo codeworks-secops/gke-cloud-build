@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-spring-app
+  name: demo-spring-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: demo-spring-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-spring-app
+    spec:
+      containers:
+        - image: gcr.io/project-id/my-app
+          imagePullPolicy: Always
+          name: demo-spring-app
