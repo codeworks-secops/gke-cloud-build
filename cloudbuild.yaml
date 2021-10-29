@@ -17,10 +17,9 @@ steps:
     args:
       - '-c'
       - |
-
             gcloud container clusters get-credentials kube-cluster --project $PROJECT_ID --zone europe-west4-b
             sed -i 's|gcr.io/project-id/my-app|gcr.io/$PROJECT_ID/demo:$SHORT_SHA|' ./deployment.yaml
             kubectl apply -f ./deployment.yaml
-  timeout: 2000s
+    timeout: 2000s
 images: ["gcr.io/$PROJECT_ID/demo"]
 # [END cloudbuild_maven]
