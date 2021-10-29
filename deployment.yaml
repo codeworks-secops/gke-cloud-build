@@ -16,11 +16,12 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: demo-spring-app
     spec:
       containers:
         - image: gcr.io/project-id/my-app
           imagePullPolicy: Always
+          ports:
+            - containerPort: 6666
           name: demo-spring-app

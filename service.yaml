@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-spring-app-service
+  labels:
+    app: demo-spring-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: demo-spring-app
+  ports:
+    - port: 9090
+      targetPort: 6666
