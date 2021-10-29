@@ -18,9 +18,9 @@ steps:
             sed -i 's|gcr.io/project-id/my-app|gcr.io/$PROJECT_ID/demo:$SHORT_SHA|' ./deployment.yaml
             kubectl apply -f ./deployment.yaml
             kubectl apply -f ./service.yaml
-    substitutions:
-      _CLOUDSDK_COMPUTE_ZONE: europe-west4-b
-      _CLOUDSDK_CONTAINER_CLUSTER: kube-cluster
     timeout: 2000s
+substitutions:
+  _CLOUDSDK_COMPUTE_ZONE: europe-west4-b
+  _CLOUDSDK_CONTAINER_CLUSTER: kube-cluster
 images: ["gcr.io/$PROJECT_ID/demo"]
 # [END cloudbuild_maven]
