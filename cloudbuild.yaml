@@ -7,17 +7,20 @@ steps:
   - id: 'Deploy to gke'
     name: 'gcr.io/cloud-builders/gcloud'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4-b'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
+      - 'CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_ZONE}'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
       - 'KUBECONFIG=/.kube/config'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-            gcloud container clusters get-credentials kube-cluster --project $PROJECT_ID --zone europe-west4-b
+            gcloud container clusters get-credentials kube-cluster --project $PROJECT_ID --zone ${_CLOUDSDK_COMPUTE_ZONE}
             sed -i 's|gcr.io/project-id/my-app|gcr.io/$PROJECT_ID/demo:$SHORT_SHA|' ./deployment.yaml
             kubectl apply -f ./deployment.yaml
             kubectl apply -f ./service.yaml
+    substitutions:
+      _CLOUDSDK_COMPUTE_ZONE: europe-west4-b
+      _CLOUDSDK_CONTAINER_CLUSTER: kube-cluster
     timeout: 2000s
 images: ["gcr.io/$PROJECT_ID/demo"]
 # [END cloudbuild_maven]
