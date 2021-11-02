@@ -16,7 +16,7 @@ steps:
     args:
       - '-c'
       - |
-            gcloud container clusters get-credentials kube-cluster --project $PROJECT_ID --zone ${_CLOUDSDK_COMPUTE_ZONE}
+            gcloud container clusters get-credentials ${_CLOUDSDK_CONTAINER_CLUSTER --project $PROJECT_ID --zone ${_CLOUDSDK_COMPUTE_ZONE}
             sed -i 's|gcr.io/project-id/my-app|gcr.io/$PROJECT_ID/demo:$SHORT_SHA|' ./deployment.yaml
             kubectl apply -f ./deployment.yaml
             kubectl apply -f ./service.yaml
