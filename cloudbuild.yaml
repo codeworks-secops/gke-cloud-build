@@ -24,6 +24,6 @@ steps:
 
 substitutions:
   _CLOUDSDK_COMPUTE_ZONE: europe-west4-b
-  _CLOUDSDK_CONTAINER_CLUSTER: kube-cluster
+  _CLOUDSDK_CONTAINER_CLUSTER: my-cluster
 
 images: ["gcr.io/$PROJECT_ID/demo"]
