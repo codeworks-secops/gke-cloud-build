@@ -10,4 +10,4 @@ spec:
     app: demo-spring-app
   ports:
     - port: 9090
-      targetPort: 6666
+      targetPort: 9090
